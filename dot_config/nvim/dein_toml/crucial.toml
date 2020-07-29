@@ -1,0 +1,42 @@
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+hook_add = '''
+nmap // <Plug>(easymotion-prefix)
+'''
+
+[[plugins]]
+repo = 'mbbill/undotree'
+hook_add = '''
+if !exists('g:undotree_WindowLayout')
+    let g:undotree_WindowLayout = 3
+endif
+nnoremap [undotree] <Nop>
+nmap <Space>ut [undotree]
+nnoremap [undotree] :UndotreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_enabled = 0
+  nnoremap [indentline] <Nop>
+  nmap <Space>il [indentline]
+  nnoremap <silent> [indentline] :IndentLinesToggle<CR>
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['Shougo/context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+hook_add = '''
+  xmap ga <Plug>(EasyAlign)
+  nmap ga <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl'

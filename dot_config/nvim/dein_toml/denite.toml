@@ -1,0 +1,14 @@
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+  source ~/.config/nvim/plugin_settings/denite.vim
+'''
+
+[[plugins]]
+repo= 'Jagua/vim-denite-ghq'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'

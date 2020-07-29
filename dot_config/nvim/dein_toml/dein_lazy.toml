@@ -1,0 +1,22 @@
+[[plugins]]
+repo = 'sakhnik/nvim-gdb'
+
+[[plugins]]
+repo = '0x84/vim-coderunner'
+hook_add= '''
+  source ~/.config/nvim/plugin_settings/coderunner.vim
+'''
+
+[[plugins]]
+repo = 'dense-analysis/ale'
+hook_add = '''
+  source ~/.config/nvim/plugin_settings/ale.vim
+'''
+
+[[plugins]]
+repo = 'mattn/vim-sonictemplate'
+hook_source='''
+let g:sonictemplate_vim_template_dir = [
+      \ '$NVIM/sonictemplate'
+      \]
+'''

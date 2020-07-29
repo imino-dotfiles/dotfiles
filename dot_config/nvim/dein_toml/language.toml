@@ -1,0 +1,14 @@
+[[plugins]] # rust support
+repo = 'rust-lang/rust.vim'
+on_ft = 'rs'
+
+[[plugins]] # flutter support
+repo = 'thosakwe/vim-flutter'
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]] # dart/flutter language support
+repo = 'dart-lang/dart-vim-plugin'
+on_ft = 'dart'

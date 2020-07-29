@@ -1,0 +1,37 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+hook_add = '''
+autocmd BufEnter * let &titlestring = expand( WebDevIconsGetFileTypeSymbol() ) . expand("%:@")
+set title
+'''
+
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+  colorscheme iceberg 
+  hi NormalFloat guifg=#BBECFD guibg=#095F4B
+'''
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+hook_add='''
+  source ~/.config/nvim/plugin_settings/deol.vim
+'''
+
+[[plugins]]
+repo = 'kana/vim-metarw'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  source ~/.config/nvim/plugin_settings/lightline.vim
+'''
+
+[[plugins]]
+repo = 'emonkak/vim-metarw-gist'

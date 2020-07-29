@@ -1,0 +1,13 @@
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+merged = '0'
+hook_add = '''
+  source ~/.config/nvim/plugin_settings/coc.vim
+'''
+
+# [[plugins]]
+# repo = 'Shougo/deoppet.nvim'
+# hook_add = '''
+  # source ~/.config/nvim/plugin_settings/deoppet.vim
+# '''

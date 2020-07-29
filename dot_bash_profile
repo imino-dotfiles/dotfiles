@@ -1,0 +1,9 @@
+#
+# ~/.bash_profile
+#
+
+export ENHANCD_FILTER="peco"
+export TZ='Asia/Tokyo'
+export TERM='xterm-256color'
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc

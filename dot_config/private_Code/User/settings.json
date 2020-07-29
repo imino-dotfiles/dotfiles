@@ -1,0 +1,54 @@
+{
+    "workbench.statusBar.visible": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 16,
+    "languageServerHaskell.hieExecutablePath": "/home/mumi/.local/bin/hie",
+    "rust-client.rustupPath": "/home/mumi/.cargo/bin/rustup",
+    "rust-client.updateOnStartup": true,
+    "workbench.colorTheme": "Iceberg",
+    "editor.tabSize": 2,
+    "editor.tabCompletion": "on",
+    "vim.handleKeys": {
+
+        "<C-d>": true
+    }
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+        "before": ["j", "j"],
+        "after": ["<Esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+        "before": ["<Esc>, <Esc>"],
+        "commands": [":nohl"]
+        },
+
+        {
+        "before": ["d"]
+        "after": [" \"_d"]
+        }
+
+        {
+        "before": ["yd"]
+        "after": ["d"]
+        }
+        
+        {
+        "before": ["ydd"]
+        "after": ["dd"]
+        }
+
+    ],
+    "vim.leader": "\\",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    }
+}

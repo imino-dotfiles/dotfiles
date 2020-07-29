@@ -1,0 +1,45 @@
+{
+    "suggest.noselect": true,
+    "suggest.preferCompleteThanJumpPlaceholder": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+                                               "dart", 
+                                               "haskell"
+                                             ],
+
+    "rust-client.rustupPath": "/home/mumi/.cargo/bin/rustup",
+    "rust-client.rlsPath": "/home/mumi/.cargo/bin/rls",
+    "languageserver": {
+    
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"],
+            "initializationOptions": {
+            "usePlaceholders": true
+
+            }
+        }
+        ,
+        "haskell": {
+            "command": "hie-wrapper",
+         /* "args": ["-l", "hie-log", "-d"], */
+            "rootPatterns": [
+                            ".stack.yaml",
+                            "cabal.config",
+                            "package.yaml"
+                            ],
+            "filetypes": [
+                          "hs",
+                          "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+        }
+      }
+      /* "trace.server": "verbose", */
+
+    }
+  }
+
+}
