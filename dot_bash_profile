@@ -2,6 +2,8 @@
 # ~/.bash_profile
 #
 
+set -o vi
+
 export ENHANCD_FILTER="peco"
 export TZ='Asia/Tokyo'
 export TERM='xterm-256color'
