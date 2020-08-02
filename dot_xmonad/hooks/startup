@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+fcitx-autostart &
+
+setxkbmap jp &
+
+picom -CG --active-opacity 1.0 --shadow-ignore-shaped &
+
+POLYBAR=~/.config/polybar/launch.sh
+bash $POLYBAR &
+
+dunst &
