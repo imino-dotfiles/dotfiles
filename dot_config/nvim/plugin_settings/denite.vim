@@ -21,20 +21,19 @@ nnoremap <silent> [denite]r :Denite file_mru<CR>
 nnoremap [denite]c :Denite 
 nnoremap <silent> [denite]pc :DeniteProject 
 nnoremap <silent> [denite]g<Space> :Denite grep<CR>
+nnoremap <silent> [denite]dr :<C-u>Denite file/rec -split=floating<CR>
 nnoremap <silent> [denite]gh :Denite ghq<CR>
 nnoremap <silent> [denite]h :Denite help<CR>
-nnoremap <silent> [denite]m :Denite memo memo:new<CR>
-nnoremap <silent> [denite]g :Denite memo/grep::!<CR>
+nnoremap <silent> [denite]mn :Denite memo memo:new<CR>
+nnoremap <silent> [denite]mg :Denite memo/grep::!<CR>
 
-if executable('rg')
-    call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
-    call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
-    call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
-    call denite#custom#var('grep', 'recursive_opts', [])
-    call denite#custom#var('grep', 'final_opts', [])
-    call denite#custom#var('grep', 'separator', ['--'])
-    call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
-endif
+call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+call denite#custom#var('file_rec', 'command', ['rg', '--files', '--glob', '!.git'])
+call denite#custom#var('grep', 'command', ['rg', '--threads', '1'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'default_opts', ['--vimgrep', '--no-heading'])
 
 call denite#custom#map('insert', "<C-n>", '<denite:move_to_next_line>')
 call denite#custom#map('insert', "<C-p>", '<denite:move_to_previous_line>')
@@ -84,9 +83,3 @@ for [key, value] in items(s:denite_default_options)
   call add(s:denite_option_array, '-'.key.'='.value)
 endfor
 call denite#custom#option('default', s:denite_default_options)
-
-call denite#custom#var('file/rec', 'command',
-    \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#filter('matcher/ignore_globs', 'ignore_globs',
-    \ [ '.git/', '.ropeproject/', '__pycache__/',
-    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/'])
