@@ -126,7 +126,13 @@ nemo       :
 
 xmonad     :
 
-              yay -S --noconfirm xmonad xmonad-contrib
+              cd ~
+              mkdir .xmonad
+              cd .xmonad
+              git clone "https://github.com/xmonad/xmonad" xmonad-git
+              git clone "https://github.com/xmonad/xmonad-contrib" xmonad-contrib-git
+              stack init
+              stack install
 
 polybar    :
 
