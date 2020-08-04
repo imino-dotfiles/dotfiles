@@ -21,25 +21,23 @@
         }
         ,
         "haskell": {
-            "command": "hie-wrapper",
-         /* "args": ["-l", "hie-log", "-d"], */
-            "rootPatterns": [
-                            ".stack.yaml",
-                            "cabal.config",
-                            "package.yaml"
-                            ],
-            "filetypes": [
-                          "hs",
-                          "lhs",
-        "haskell"
-      ],
-      "initializationOptions": {
-        "languageServerHaskell": {
+          "command": "hie-wrapper",
+          "args": ["--lsp"],
+          "rootPatterns": [
+            "stack.yaml",
+            "cabal.config",
+            "package.yaml"
+          ],
+          "filetypes": [
+            "haskell",
+            "lhaskell"
+          ],
+          "initializationOptions": {
+            "languageServerHaskell": {
+              "hlintOn": true
+            }
+          }
         }
-      }
-      /* "trace.server": "verbose", */
-
-    }
   }
 
 }

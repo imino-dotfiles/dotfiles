@@ -1,0 +1,11 @@
+[user]
+	name = iminotech
+	email = iminotech@gmail.com
+[credential]
+	helper = /usr/lib/git-core/git-credential-gnome-keyring
+[ghq]
+	root = ~/repos
+[alias]
+  get = !ghq get -p
+  go = !cd (ghq list --full-path | peco)
+  ls = !ghq list
