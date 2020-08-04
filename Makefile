@@ -27,20 +27,10 @@ initialize :
              cd ..
              rm -rf yay
              yay -S --noconfirm expect chezmoi wget curl
+             cd sudo_zone
+             sudo make
 
-install    :
-
-             make coding
-             make desktop 
-             make  
-             make  
-             make  
-             make  
-             make  
-             make  
-             make  
-             make  
-             chezmoi apply
+install    : coding desktop update utils
 
 remove     :
 
@@ -48,7 +38,7 @@ remove     :
 
 update     :
 
-
+             chezmoi apply
 
 backup     :
 
@@ -58,21 +48,21 @@ backup     :
 
 ## coding
 
-coding     :
-
-              make neovim
-              make jetbrains
-              make vscode
+coding     : neovim jetbrains
 
 neovim     :
 
               yay -S --noconfirm neovim
+              pip3 install pynvim
+              yarn install neovim
               nvim -c "call dein#update()"
               nvim -c "UpdateRemotePlugin"
 
 jetbrains  :
 
               wget https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.17.7275.tar.gz
+              tar -xf jetbrains-toolbox-1.17.7275.tar.gz -C ~/.local/share/
+              rm -f jetbrains-toolbox-1.17.7275.tar.gz
 
 vscode     :
               
@@ -101,11 +91,11 @@ haskell    :
 
 dart       :
 
-              yay  -S dart
+              yay  -S --noconfirm dart
 
 flutter    :
 
-              yay  -S flutter
+              yay  -S --noconfirm flutter
               nvim -c ":CocInstall coc-flutter"
 
 elixir     :
@@ -118,11 +108,21 @@ julia      :
               yay -S --noconfirm julia openblas
               julia -e 'using Pkg; Pkg.add.([PkgTemplates,Lint,LanguageServer])'
 
+python     :
+
+              yay -S --noconfirm python3
+
+node       :
+
+              yay -S --noconfirm nodejs yarn
+
 ## desktop
+
+desktop    : nemo xmonad polybar picom polybar picom lightdm scrot
 
 nemo       :
 
-
+              yay -S --noconfirm nemo nemo-fileroller
 
 xmonad     :
 
@@ -130,15 +130,15 @@ xmonad     :
 
 polybar    :
 
-
+              yay -S --noconfirm polybar
 
 picom      :
 
-
+              yay -S --noconfirm picom-rounded-corners
 
 lightdm    :
 
-
+              yay -S --noconfirm lightdm lightdm-webkit2-greeter lightdm-webkit-theme-litarvan-git
 
 fonts      :
 
@@ -146,6 +146,8 @@ fonts      :
               yay -S --noconfirm nerd-fonts-fantasque-sans-mono
 
 ## utils
+
+utils      : scrot
 
 scrot      :
  
