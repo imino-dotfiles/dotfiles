@@ -19,9 +19,12 @@ import XMonad.Layout.Grid
 import XMonad.Layout.Maximize
 import XMonad.Layout.Tabbed
 import XMonad.Layout.Spiral
+import XMonad.Layout.PerWorkspace
+import XMonad.Layout.MultiColumns
 
 import XMonad.Actions.GridSelect
 import XMonad.Actions.CycleWS (nextWS, prevWS)
+import XMonad.Actions.SpawnOn
 
 import XMonad.Util.EZConfig
 
@@ -51,7 +54,7 @@ defaults       = def { terminal = myTerminal
                      }
 
 myTerminal = "alacritty"
-myBrowser  = "firefox"
+myBrowser  = "vivaldi-stable"
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
                        [ ((modMask, xK_p), spawn "rofi -show run")
@@ -71,6 +74,9 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
                        , ((modMask, xK_k), windows W.focusUp)
                        , ((modMask .|. shiftMask, xK_j), windows W.swapDown)
                        , ((modMask .|. shiftMask, xK_k), windows W.swapUp)
+                       , ((modMask, xK_comma ), sendMessage (IncMasterN 1))
+                       , ((modMask, xK_period), sendMessage (IncMasterN (-1)))
+                       , ((modMask, xK_g), goToSelected defaultGSConfig)
                        ]
 
                        ++
@@ -93,11 +99,16 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 myLayout       = avoidStruts
                $ smartBorders
                $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True
-               $ all
-                  where
-                      all = spiral (6/7) ||| Grid ||| Full ||| Simplest ||| ResizableTall 1 (3/100) (1/2) []
+               -- onWorkspace
+               $ onWorkspace "1: edit" simpleTabbed
+               $ onWorkspace "2: term" multiCol [1] 4 0.01 0.5
+               $ onWorkspace "2: term" Simplest
+               $ onWorkspace "3: browse" Grid 
+               $ onWorkspace "4: social" Simplest 
+               $ onWorkspace "5: media" Simplest
+                
 
-myWorkspaces = ["edit", "terminal", "browse", "social", "file"]
+myWorkspaces = ["1: edit", "2: term", "3: browse", "4: social", "5: media"] ++ map show [6..9]
 
 myManageFloat = composeAll
               [ className =? "Pavucontrol" --> doFloat
@@ -113,7 +124,13 @@ myManageShift = composeAll
 myStartup     = do
                spawn "sh ~/.xmonad/hooks/startup"
                spawn "feh --bg-fill ~/dotfiles/WALLPAPER.png"
+               spawnOn "1: edit" "intellij-idea-ultimate-edition"
+               spawnOn "2: term" "alacritty"
+               spawnOn "3: browse" "vivaldi-stable"
+               spawnOn "4: social" "discord"
+               spawnOn "4: social" "mailspring"
+               spawnOn "5: media" "spotify"
 
 myLogHook     = do
-                     fadeInactiveLogHook 0.6
+                     fadeInactiveLogHook 0.5
 

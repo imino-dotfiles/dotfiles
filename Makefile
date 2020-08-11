@@ -153,7 +153,7 @@ fonts      :
 
 ## utils
 
-utils      : scrot
+utils      :  scrot
 
 scrot      :
  

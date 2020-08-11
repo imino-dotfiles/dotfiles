@@ -37,8 +37,8 @@ if has('persistent_undo')
 endif
 
 set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let &t_8f = "\<esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<esc>[48;2;%lu;%lu;%lum"
 
 
 set cursorline
@@ -53,9 +53,6 @@ set pumblend=15
 set winblend=30
 set shiftwidth=2
 set mouse=a
-
-" Don't save options.
-set viewoptions-=options
 
 if &modifiable
   set encoding=utf-8
