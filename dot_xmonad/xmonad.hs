@@ -58,6 +58,7 @@ myBrowser  = "vivaldi-stable"
 
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
                        [ ((modMask, xK_p), spawn "rofi -show run")
+                       , ((modMask, xK_w), spawn "rofi -show window")
                        , ((modMask, xK_Right), nextWS) 
                        , ((modMask .|. controlMask, xK_k), nextWS) 
                        , ((modMask, xK_Left), prevWS) 
