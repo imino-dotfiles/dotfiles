@@ -34,6 +34,14 @@ import qualified DBus as D
 import qualified DBus.Client as D
 import qualified Codec.Binary.UTF8.String as UTF8
 
+-- workspaces definition
+
+ws_edit   = "\xe7b5"
+ws_manage = "\xe795"
+ws_social = "\xf6ed"
+ws_media  = "\xf9c2"
+ws_life   = "\xf303"
+
 main = do
           xmonad . ewmh $ docks defaults 
 
@@ -44,8 +52,8 @@ defaults       = def { terminal = myTerminal
                      , normalBorderColor = "#102040"
                      , focusedBorderColor = "#009bb0"
                      
-                     , workspaces = myWorkspaces
-                     , manageHook = myManageFloat <+> myManageShift
+                     , workspaces = [ ws_edit, ws_manage, ws_social, ws_media, ws_life]
+                     , manageHook = myManageHook 
                      , startupHook = myStartup
                      , layoutHook = myLayout
                      , logHook = myLogHook 
@@ -99,40 +107,76 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
                      , ((mod4Mask, button5), const nextWS)
                      ]
 
-myLayout       = avoidStruts
-               $ smartBorders
-               $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True
-               -- onWorkspace
-               $ onWorkspace "1: edit" simpleTabbed
-               $ onWorkspace "2: term" multiCol [1] 4 0.01 0.5
-               $ onWorkspace "2: term" Simplest
-               $ onWorkspace "3: browse" Grid 
-               $ onWorkspace "4: social" Simplest 
-               $ onWorkspace "5: media" Simplest
-                
+myLayout      = avoidStruts
+                   $ smartBorders
+                   $ spacingRaw True (Border 5 5 5 5) True (Border 5 5 5 5) True
+                   $ onWorkspaces [ws_edit] layout_edit
+                   $ onWorkspaces [ws_manage] layout_manage
+                   $ onWorkspaces [ws_social] layout_social
+                   $ onWorkspaces [ws_media] layout_media
+                   $ onWorkspaces [ws_life] layout_life 
+                   $ Simplest
+                       where
+                           layout_edit = Simplest 
+                           layout_manage = Simplest ||| Grid ||| multiCol [1] 4 0.01 0.5
+                           layout_social = Simplest ||| Grid
+                           layout_media = Simplest
+                           layout_life = Simplest ||| Grid
 
-myWorkspaces = ["1: edit", "2: term", "3: browse", "4: social", "5: media"] ++ map show [6..9]
+-- window rules
+myManageHook             = composeAll . concat $
+    [ [isDialog        --> doCenterFloat'                ]
+    , [className        =? c --> doFloat       | c <- myJFloats]    -- Just float
+    , [className        =? c --> doCenterFloat' | c <- myCFloats]   -- Center float
+    , [title            =? t --> doFloat       | t <- myTFloats]
+    , [resource         =? r --> doFloat       | r <- myRFloats]
+    , [resource         =? i --> doIgnore      | i <- myIgnores]
+    , [(className       =? x <||> title =? x <||> resource =? x) --> doShiftAndGo ws_edit | x <- myShifts_edit]  -- send the given program to this tag
+    , [(className       =? x <||> title =? x <||> resource =? x) --> doShiftAndGo ws_manage | x <- myShifts_manage]  -- send the given program to this tag
+    , [(className       =? x <||> title =? x <||> resource =? x) --> doShiftAndGo ws_edit | x <- myShifts_social]  -- send the given program to this tag
+    , [(className       =? x <||> title =? x <||> resource =? x) --> doShiftAndGo ws_media | x <- myShifts_media]  -- send the given program to this tag
+    , [(className       =? x <||> title =? x <||> resource =? x) --> doShiftAndGo ws_life | x <- myShifts_life]  -- send the given program to this tag
+    ]
+    where
+        doMaster         = doF W.shiftMaster -- new floating windows goes on top
+        doCenterFloat'   = doCenterFloat <+> doMaster
+        doShiftAndGo ws  = doF (W.greedyView ws) <+> doShift ws
+        myJFloats        = []
+        myCFloats        = [ "Pavucontrol"
+                           ]
+        myTFloats        = []
+        myRFloats        = []
+        myIgnores        = [ "xmobar"
+                           , "dzen"
+                           , "dzen2"
+                           , "desktop_window"
+                           , "kdesktop"
+                           , "Polybar"
+                           ]
+        myShifts_edit    = [ "jetbrains-idea"
+                           ]
+        myShifts_manage  = [ "alacritty"
+                           , "Nemo"
+                           ]
+        myShifts_social  = [ "discord"
+                           , "mailspring"
+                           , "vivaldi-stable"
+                           ]
+        myShifts_media   = [ "spotify"
+                           ] 
+        myShifts_life    = [ "todoist"
+                           ]
 
-myManageFloat = composeAll
-              [ className =? "Pavucontrol" --> doFloat
-              , className =? "jetbrains-studio" --> doFloat
-              , className =? "Polybar" --> doFullFloat
-              , title =? "screenshot" --> doFloat
-              ]
-
-myManageShift = composeAll
-              [ className =? "Nemo" --> doShift "5"
-              ]
-
-myStartup     = do
-               spawn "sh ~/.xmonad/hooks/startup"
-               spawn "feh --bg-fill ~/dotfiles/WALLPAPER.png"
-               spawnOn "1: edit" "intellij-idea-ultimate-edition"
-               spawnOn "2: term" "alacritty"
-               spawnOn "3: browse" "vivaldi-stable"
-               spawnOn "4: social" "discord"
-               spawnOn "4: social" "mailspring"
-               spawnOn "5: media" "spotify"
+myStartup    = do
+                   spawn "sh ~/.xmonad/hooks/startup"
+                   spawn "feh --bg-fill ~/dotfiles/WALLPAPER.png"
+                   spawnOn ws_edit "intellij-idea-ultimate-edition"
+                   spawnOn ws_manage "alacritty"
+                   spawnOn ws_social "vivaldi-stable"
+                   spawnOn ws_social "discord"
+                   spawnOn ws_social "mailspring"
+                   spawnOn ws_media "spotify"
+                   spawnOn ws_life "todoist"
 
 myLogHook     = do
                      fadeInactiveLogHook 0.5
