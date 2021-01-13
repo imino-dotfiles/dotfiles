@@ -12,3 +12,16 @@ on_ft = 'toml'
 [[plugins]] # dart/flutter language support
 repo = 'dart-lang/dart-vim-plugin'
 on_ft = 'dart'
+
+[[plugins]] # markdown support
+repo = 'godlygeek/tabular'
+on_ft = 'markdown'
+
+[[plugins]] # markdown support
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+
+[[plugins]] # markdown preview support
+repo = 'iamcco/markdown-preview.nvim'
+on_ft = 'markdown'
+build = 'sh -c "cd app && yarn install"'

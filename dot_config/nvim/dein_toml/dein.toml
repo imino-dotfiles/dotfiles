@@ -15,6 +15,12 @@ hook_add = '''
   hi NormalFloat guifg=#BBECFD guibg=#095F4B
 '''
 
+# [[plugins]]
+# repo = 'NLKNguyen/papercolor-theme'
+# hook_add = '''
+#   colorscheme PaperColor
+# '''
+
 [[plugins]]
 repo = 'mattn/webapi-vim'
 
@@ -35,3 +41,9 @@ hook_add = '''
 
 [[plugins]]
 repo = 'emonkak/vim-metarw-gist'
+
+[[plugins]]
+repo = 'vim-scripts/vim-auto-save'
+hook_add = '''
+let g:auto_save = 1  " enable AutoSave on Vim startup
+'''

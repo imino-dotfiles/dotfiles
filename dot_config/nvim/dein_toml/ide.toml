@@ -1,13 +1,28 @@
 [[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
-merged = '0'
-hook_add = '''
-  source ~/.config/nvim/plugin_settings/coc.vim
-'''
+repo = 'codota/tabnine-vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
+
+# [[plugins]]
+# repo = 'neoclide/coc.nvim'
+# rev = 'release'
+# merged = '0'
+# hook_add = '''
+#   source ~/.config/nvim/plugin_settings/coc.vim
+# '''
 
 # [[plugins]]
 # repo = 'Shougo/deoppet.nvim'
 # hook_add = '''
-  # source ~/.config/nvim/plugin_settings/deoppet.vim
+#   source ~/.config/nvim/plugin_settings/deoppet.vim
 # '''

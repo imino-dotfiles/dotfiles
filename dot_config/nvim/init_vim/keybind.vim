@@ -1,6 +1,12 @@
 nnoremap cc <Nop>
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap jj <Esc>
+inoremap っｊ <Esc>
+nnoremap い i
+nnoremap ｊ j
+nnoremap  k
+nnoremap ｈ h
+nnoremap ｌ l
 
 nnoremap <Space> <Nop>
 nnoremap <SID> <Nop>
@@ -9,6 +15,8 @@ nnoremap j gj
 nnoremap k gk
 
 nnoremap d "_d
+nnoremap x "_x
+nnoremap s "_s
 nnoremap dd "_dd
 xnoremap d "_d
 xnoremap p "_dP

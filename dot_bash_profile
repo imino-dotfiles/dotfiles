@@ -2,11 +2,4 @@
 # ~/.bash_profile
 #
 
-set -o vi
-
-export ENHANCD_FILTER="peco"
-export TZ='Asia/Tokyo'
-export TERM='xterm-256color'
-expoer XDG_CONFIG_HOME='~/.config'
-
 [[ -f ~/.bashrc ]] && . ~/.bashrc
