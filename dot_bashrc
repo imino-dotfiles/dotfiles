@@ -1,0 +1,23 @@
+#
+# ~/.bashrc
+#
+
+export PATH+="/bin:/sbin:/usr/bin:/usr/sbin:/home/$(whoami)/.cargo/bin"
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) exec fish;;
+      *) return;;
+esac
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+set -o vi
+
+export ENHANCD_FILTER="peco"
+export TZ='Asia/Tokyo'
+export TERM='xterm-256color'
+export XDG_CONFIG_HOME='~/.config'
+
+alias polybar-launch="sh $POLYBARLAUNCH"

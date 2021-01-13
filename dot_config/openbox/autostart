@@ -1,0 +1,11 @@
+fcitx-autostart &
+
+setxkbmap jp &
+
+sxhkd &
+
+polybar &
+
+picom &
+
+feh --bg-fill $WALLPAPER &
